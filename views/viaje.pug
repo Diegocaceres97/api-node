@@ -1,0 +1,22 @@
+extends ./layout/index
+
+block contenido
+    main.container.mt-5
+        .row
+            .col-md-12 
+            img(src=`/img/destinos_${resultado.imagen}_ln.jpg`, alt="imagen viaje",class="")
+            .col-md-12
+            h1.container.text-center=resultado.titulo
+            
+               
+            p.mr-1
+                svg.icon.icon-tabler.icon-tabler-users(xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewbox='0 0 24 24' stroke-width='1.5' stroke='#fd0061' fill='none' stroke-linecap='round' stroke-linejoin='round')
+                    path(stroke='none' d='M0 0h24v24H0z' fill='none')
+                    circle(cx='9' cy='7' r='4')
+                    path(d='M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2')
+                    path(d='M16 3.13a4 4 0 0 1 0 7.75')
+                    path(d='M21 21v-2a4 4 0 0 0 -3 -3.85')
+                | #{resultado.disponibles} Disponibles
+                                   
+            p.text-justify= resultado.descripcion.substr(0,400)
+            a(href=`viajes/${resultado.slug}`, class="btn btn-success btn-block") Mas informacion
