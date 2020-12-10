@@ -29,7 +29,7 @@ const paginaViajes = async (req,res)=>{
 }
 const paginaTestimoniales = (req,res)=>{
     
-    res.render('viajes',{
+    res.render('testimoniales',{
         pagina:'Testimoniales'
     });//el render busca una vista (en este caso .pug) lo cual escanea el nombre nosotros
     //en este caso y lo manda a la vista
