@@ -7,18 +7,23 @@ const app= express();
 //Conectar la base de datos
 db.authenticate().then(()=>console.log('Base de datos conectada')). //promise (resolve,reject)
 catch(error=>console.log(error));
+
+
 //Definimos puerto
 const port = process.env.PORT||4000;
 
 //Habilitar pug
 app.set('view engine','pug');
 
+//Obtener el año actual
 app.use((req,res,next)=>{
 const year = new Date();
 
 res.locals.actualYear = year.getFullYear();
     next();
 });
+//Agregar body parse
+app.use(express.urlencoded({extended: true}));
 
 //Definimos la carpeta publica
 app.use(express.static('public'));
