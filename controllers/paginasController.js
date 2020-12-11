@@ -1,8 +1,19 @@
 import {Viaje} from '../models/Viaje.js'
-const paginaInicio = (req,res)=>{
-    res.render('inicio',{
-pagina: 'INICIO'
-    });
+import {Testimonial} from '../models/Testimoniales.js'
+const paginaInicio = async (req,res)=>{
+
+    //Consultar tres viajes del modelo viaje
+    try {
+        const viajes = await Viaje.findAll({limit:3});
+        res.render('inicio',{
+            pagina: 'INICIO',
+            clase: 'home',
+            viajes
+                });
+    } catch (error) {
+        console.log(error);
+    }
+  
 }
 const paginaNosotros = (req,res)=>{
     const viajes = 'Viaje a Alemania';
@@ -27,12 +38,18 @@ const paginaViajes = async (req,res)=>{
     });//el render busca una vista (en este caso .pug) lo cual escanea el nombre nosotros
     //en este caso y lo manda a la vista
 }
-const paginaTestimoniales = (req,res)=>{
+const paginaTestimoniales = async (req,res)=>{
     
-    res.render('testimoniales',{
-        pagina:'Testimoniales'
-    });//el render busca una vista (en este caso .pug) lo cual escanea el nombre nosotros
-    //en este caso y lo manda a la vista
+    try {
+        const testimoniales= await Testimonial.findAll();
+        res.render('testimoniales',{
+            pagina:'Testimoniales',
+            testimoniales
+        });//el render busca una vista (en este caso .pug) lo cual escanea el nombre nosotros
+        //en este caso y lo manda a la vista
+    } catch (error) {
+     console.log(error);   
+    }
 }
 //Muestra un viaje por su slug
 const paginaDetallesViaje = async (req,res)=>{

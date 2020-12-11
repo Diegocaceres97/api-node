@@ -3,6 +3,18 @@ extends ./layout/index
 block contenido
     main.container.mt-5
         h1.text-center.mt-5=pagina
+            
+            blockquote.text-center Lee sobre nuestros clientes o sus opiniones
+            .row.testimoniales
+                each testimonial in testimoniales
+                    .col-md-6.col-lg-4.mb-4
+                        .card
+                            .card-body
+                                blockquote.blockquote
+                                    p.mb-0
+                                        | #{testimonial.mensaje}
+                                    footer.blockquote-footer
+                                        |#{testimonial.nombre}
             .row
 
                 h2.d-block.w-100.text-center Agrega un testimonial
@@ -16,7 +28,7 @@ block contenido
             
                             .form-group
                                 label(for="email") Email
-                                input#email(type="email", placeholder="Tu Email",name="nombre",class="form-control",value=correo,required)
+                                input#email(type="email", placeholder="Tu Email",name="correo",class="form-control",value=correo,required)
                             .form-group
                                 label(for="mensaje") Mensaje
                                 textarea#mensaje(name="mensaje", cols="20", rows="3", placeholder="Tu mensaje",value=mensaje,required)
